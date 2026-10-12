@@ -1,0 +1,68 @@
+import { Alert } from '../types/hospital';
+
+/**
+ * Udon Thani Hospital Real-time Simulated Telemetry Alerts
+ * Linked to real UDH buildings and departments.
+ */
+export const INITIAL_ALERTS: Alert[] = [
+  {
+    id: 'alt-er-surge-01',
+    zoneId: 'dept-opd-er',
+    zoneName: 'แผนกอุบัติเหตุ-ฉุกเฉิน และกู้ชีพ 1669 (อาคารผู้ป่วยนอก)',
+    alertType: 'occupancy_surge',
+    severity: 'critical',
+    status: 'active',
+    titleTh: 'อัตราครองเตียงฉุกเฉินระดับสีแดง (Red Zone) เกิน 95%',
+    titleEn: 'Trauma ER Resuscitation Occupancy Exceeds 95%',
+    descriptionTh: 'มีผู้รับบริการฉุกเฉินระดับวิกฤตเข้ามาพร้อมกัน ขอแนะนำเปิด Fast-Track Overflow Bay และระดมทีมสำรอง',
+    descriptionEn: 'High-acuity influx in trauma bay. Suggest opening Overflow Bay and dispatching backup trauma team.',
+    startedAt: new Date(Date.now() - 1000 * 60 * 18).toISOString(),
+    updatedAt: new Date().toISOString(),
+    dataSource: 'SIMULATED DATA',
+  },
+  {
+    id: 'alt-cardio-surge-02',
+    zoneId: 'excellent',
+    zoneName: 'อาคารศูนย์เชี่ยวชาญ ชั้น 2 (ศูนย์โรคหัวใจ)',
+    alertType: 'equipment_maintenance',
+    severity: 'warning',
+    status: 'active',
+    titleTh: 'เตรียมความพร้อมห้องสวนหัวใจด่วน (Emergency Primary PCI Standby)',
+    titleEn: 'Cath Lab Emergency PCI Standby Notification',
+    descriptionTh: 'รับแจ้งประสานเคส STEMI ฉุกเฉินจากโรงพยาบาลชุมชนในเครือข่ายจังหวัดอุดรธานี คาดถึงใน 15 นาที',
+    descriptionEn: 'Network referral incoming for acute STEMI. Primary PCI team activated in Cath Lab 1.',
+    startedAt: new Date(Date.now() - 1000 * 60 * 12).toISOString(),
+    updatedAt: new Date().toISOString(),
+    dataSource: 'SIMULATED DATA',
+  },
+  {
+    id: 'alt-opd-wait-03',
+    zoneId: 'dept-opd-triage',
+    zoneName: 'ศูนย์คัดกรองแรกรับและเวชระเบียน (อาคารผู้ป่วยนอก)',
+    alertType: 'wait_time_threshold',
+    severity: 'warning',
+    status: 'active',
+    titleTh: 'ระยะเวลารอคอยจุดคัดกรองเช้าสูงกว่าเป้าหมาย (18 นาที)',
+    titleEn: 'Outpatient Triage Wait Time Exceeds 15-min KPI',
+    descriptionTh: 'ช่วงเช้ามีปริมาณผู้มารับบริการหนาแน่น เจ้าหน้าที่เปิดจุดคัดกรองอัตโนมัติ Kiosk ครบทุกช่องทาง',
+    descriptionEn: 'Morning peak surge detected. All self-service kiosks and express counters activated.',
+    startedAt: new Date(Date.now() - 1000 * 60 * 32).toISOString(),
+    updatedAt: new Date().toISOString(),
+    dataSource: 'SIMULATED DATA',
+  },
+  {
+    id: 'alt-defib-calib-04',
+    zoneId: 'opd',
+    zoneName: 'อาคารผู้ป่วยนอกและอำนวยการ (ER Resuscitation)',
+    alertType: 'equipment_maintenance',
+    severity: 'info',
+    status: 'active',
+    titleTh: 'เครื่อง Defibrillator #01 ถึงรอบตรวจสอบแบตเตอรี่ประจำเดือน',
+    titleEn: 'Routine Monthly Calibration Due: Defibrillator #01',
+    descriptionTh: 'อุปกรณ์ยังพร้อมใช้งานปกติ แจ้งทีมวิศวกรรมชีวการแพทย์ (Biomedical) เข้าทดสอบตามรอบกำหนด',
+    descriptionEn: 'Device fully operational. Routine preventive maintenance check requested within 48h.',
+    startedAt: new Date(Date.now() - 1000 * 60 * 120).toISOString(),
+    updatedAt: new Date().toISOString(),
+    dataSource: 'SIMULATED DATA',
+  },
+];

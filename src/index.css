@@ -1,0 +1,337 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --theme-bg-canvas: #041219;
+    --theme-panel-bg: rgba(6, 26, 33, 0.94);
+    --theme-card-bg: rgba(10, 36, 46, 0.85);
+    --theme-border: rgba(20, 184, 166, 0.28);
+    --theme-border-subtle: rgba(20, 184, 166, 0.15);
+    --theme-primary: #0d9488;
+    --theme-primary-hover: #14b8a6;
+    --theme-primary-glow: rgba(20, 184, 166, 0.35);
+    --theme-accent: #10b981;
+    --theme-accent-cyan: #06b6d4;
+    --theme-text-main: #f0fdfa;
+    --theme-text-muted: #94a3b8;
+    --theme-text-dim: #64748b;
+  }
+
+  /* 1. UDH Smart Medical Teal (รพ. อุดรธานี & สธ.) - Default */
+  .theme-udh-teal {
+    --theme-bg-canvas: #041219;
+    --theme-panel-bg: rgba(6, 26, 33, 0.94);
+    --theme-card-bg: rgba(10, 38, 48, 0.85);
+    --theme-border: rgba(20, 184, 166, 0.32);
+    --theme-border-subtle: rgba(20, 184, 166, 0.16);
+    --theme-primary: #0d9488;
+    --theme-primary-hover: #14b8a6;
+    --theme-primary-glow: rgba(20, 184, 166, 0.35);
+    --theme-accent: #10b981;
+    --theme-accent-cyan: #06b6d4;
+    --theme-text-main: #f0fdfa;
+    --theme-text-muted: #94a3b8;
+    --theme-text-dim: #64748b;
+  }
+
+  /* 2. Navy Command Center (ศูนย์ปฏิบัติการกรมท่าไฮเทค) */
+  .theme-navy-ops {
+    --theme-bg-canvas: #050b14;
+    --theme-panel-bg: rgba(10, 22, 40, 0.94);
+    --theme-card-bg: rgba(15, 30, 54, 0.85);
+    --theme-border: rgba(56, 189, 248, 0.32);
+    --theme-border-subtle: rgba(56, 189, 248, 0.16);
+    --theme-primary: #0284c7;
+    --theme-primary-hover: #38bdf8;
+    --theme-primary-glow: rgba(56, 189, 248, 0.35);
+    --theme-accent: #38bdf8;
+    --theme-accent-cyan: #67e8f9;
+    --theme-text-main: #f8fafc;
+    --theme-text-muted: #94a3b8;
+    --theme-text-dim: #64748b;
+  }
+
+  /* 3. Clinical Clean Light (คลินิกสว่าง สะอาด คลีน ทันสมัย) */
+  .theme-clinical-light {
+    --theme-bg-canvas: #f1f5f9;
+    --theme-panel-bg: rgba(255, 255, 255, 0.96);
+    --theme-card-bg: rgba(248, 250, 252, 0.95);
+    --theme-border: rgba(15, 118, 110, 0.24);
+    --theme-border-subtle: rgba(15, 118, 110, 0.12);
+    --theme-primary: #0f766e;
+    --theme-primary-hover: #0d9488;
+    --theme-primary-glow: rgba(15, 118, 110, 0.2);
+    --theme-accent: #059669;
+    --theme-accent-cyan: #0284c7;
+    --theme-text-main: #0f172a;
+    --theme-text-muted: #475569;
+    --theme-text-dim: #64748b;
+  }
+
+  /* 4. Dark Obsidian (ดำออบซิเดียน ไฮคอนทราสต์) */
+  .theme-dark-obsidian {
+    --theme-bg-canvas: #09090b;
+    --theme-panel-bg: rgba(18, 18, 22, 0.95);
+    --theme-card-bg: rgba(26, 26, 32, 0.88);
+    --theme-border: rgba(245, 158, 11, 0.3);
+    --theme-border-subtle: rgba(255, 255, 255, 0.1);
+    --theme-primary: #f59e0b;
+    --theme-primary-hover: #fbbf24;
+    --theme-primary-glow: rgba(245, 158, 11, 0.3);
+    --theme-accent: #10b981;
+    --theme-accent-cyan: #06b6d4;
+    --theme-text-main: #fafafa;
+    --theme-text-muted: #a1a1aa;
+    --theme-text-dim: #71717a;
+  }
+
+  /* Base Body Typography */
+  body {
+    font-family: 'Prompt', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* Dynamic font classes */
+  .font-prompt, .font-prompt * {
+    font-family: 'Prompt', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  }
+
+  .font-sarabun, .font-sarabun * {
+    font-family: 'Sarabun', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  }
+
+  .font-kanit, .font-kanit * {
+    font-family: 'Kanit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  }
+
+  .font-system, .font-system * {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  }
+
+  .font-mono-numbers {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ==========================================================================
+   CASCADE THEME OVERRIDES (Ensures instant 100% visible theme transformation)
+   ========================================================================== */
+
+/* 1. UDH Smart Teal Cascade */
+.theme-udh-teal header,
+.theme-udh-teal aside,
+.theme-udh-teal .theme-dynamic-panel,
+.theme-udh-teal .bg-slate-950,
+.theme-udh-teal .bg-slate-950\/90,
+.theme-udh-teal .bg-slate-950\/95 {
+  background-color: rgba(4, 22, 31, 0.95) !important;
+  border-color: rgba(20, 184, 166, 0.3) !important;
+}
+
+.theme-udh-teal .bg-slate-900,
+.theme-udh-teal .bg-slate-900\/90,
+.theme-udh-teal .bg-slate-900\/80,
+.theme-udh-teal .bg-slate-900\/60,
+.theme-udh-teal .bg-slate-900\/95 {
+  background-color: rgba(6, 36, 46, 0.88) !important;
+  border-color: rgba(20, 184, 166, 0.25) !important;
+}
+
+.theme-udh-teal .border-slate-800,
+.theme-udh-teal .border-slate-800\/80,
+.theme-udh-teal .border-slate-700\/80 {
+  border-color: rgba(20, 184, 166, 0.25) !important;
+}
+
+/* 2. Navy Ops Cascade */
+.theme-navy-ops header,
+.theme-navy-ops aside,
+.theme-navy-ops .theme-dynamic-panel,
+.theme-navy-ops .bg-slate-950,
+.theme-navy-ops .bg-slate-950\/90,
+.theme-navy-ops .bg-slate-950\/95 {
+  background-color: rgba(7, 19, 38, 0.95) !important;
+  border-color: rgba(56, 189, 248, 0.3) !important;
+}
+
+.theme-navy-ops .bg-slate-900,
+.theme-navy-ops .bg-slate-900\/90,
+.theme-navy-ops .bg-slate-900\/80,
+.theme-navy-ops .bg-slate-900\/60,
+.theme-navy-ops .bg-slate-900\/95 {
+  background-color: rgba(11, 31, 61, 0.88) !important;
+  border-color: rgba(56, 189, 248, 0.25) !important;
+}
+
+.theme-navy-ops .border-slate-800,
+.theme-navy-ops .border-slate-800\/80,
+.theme-navy-ops .border-slate-700\/80 {
+  border-color: rgba(56, 189, 248, 0.25) !important;
+}
+
+.theme-navy-ops .text-teal-300,
+.theme-navy-ops .text-teal-400 {
+  color: #38bdf8 !important;
+}
+
+.theme-navy-ops .bg-teal-500\/20 {
+  background-color: rgba(2, 132, 199, 0.2) !important;
+}
+
+.theme-navy-ops .border-teal-400\/40,
+.theme-navy-ops .border-teal-500\/30,
+.theme-navy-ops .border-teal-500\/40 {
+  border-color: rgba(56, 189, 248, 0.4) !important;
+}
+
+/* 3. Dark Obsidian Cascade */
+.theme-dark-obsidian header,
+.theme-dark-obsidian aside,
+.theme-dark-obsidian .theme-dynamic-panel,
+.theme-dark-obsidian .bg-slate-950,
+.theme-dark-obsidian .bg-slate-950\/90,
+.theme-dark-obsidian .bg-slate-950\/95 {
+  background-color: rgba(10, 10, 12, 0.96) !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+.theme-dark-obsidian .bg-slate-900,
+.theme-dark-obsidian .bg-slate-900\/90,
+.theme-dark-obsidian .bg-slate-900\/80,
+.theme-dark-obsidian .bg-slate-900\/60,
+.theme-dark-obsidian .bg-slate-900\/95 {
+  background-color: rgba(20, 20, 24, 0.9) !important;
+  border-color: rgba(245, 158, 11, 0.25) !important;
+}
+
+.theme-dark-obsidian .border-slate-800,
+.theme-dark-obsidian .border-slate-800\/80,
+.theme-dark-obsidian .border-slate-700\/80 {
+  border-color: rgba(245, 158, 11, 0.25) !important;
+}
+
+.theme-dark-obsidian .text-teal-300,
+.theme-dark-obsidian .text-teal-400 {
+  color: #fbbf24 !important;
+}
+
+.theme-dark-obsidian .bg-teal-500\/20 {
+  background-color: rgba(245, 158, 11, 0.2) !important;
+}
+
+.theme-dark-obsidian .border-teal-400\/40,
+.theme-dark-obsidian .border-teal-500\/30,
+.theme-dark-obsidian .border-teal-500\/40 {
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+
+/* 4. Clinical Clean Light Cascade */
+.theme-clinical-light header,
+.theme-clinical-light aside,
+.theme-clinical-light .theme-dynamic-panel,
+.theme-clinical-light .bg-slate-950,
+.theme-clinical-light .bg-slate-950\/90,
+.theme-clinical-light .bg-slate-950\/95 {
+  background-color: rgba(255, 255, 255, 0.97) !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08) !important;
+}
+
+.theme-clinical-light .bg-slate-900,
+.theme-clinical-light .bg-slate-900\/90,
+.theme-clinical-light .bg-slate-900\/80,
+.theme-clinical-light .bg-slate-900\/60,
+.theme-clinical-light .bg-slate-900\/95 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.theme-clinical-light .border-slate-800,
+.theme-clinical-light .border-slate-800\/80,
+.theme-clinical-light .border-slate-700\/80 {
+  border-color: #e2e8f0 !important;
+}
+
+.theme-clinical-light .text-white,
+.theme-clinical-light .text-slate-100,
+.theme-clinical-light .text-slate-200 {
+  color: #0f172a !important;
+}
+
+.theme-clinical-light .text-slate-300,
+.theme-clinical-light .text-slate-400 {
+  color: #475569 !important;
+}
+
+.theme-clinical-light .text-slate-500 {
+  color: #64748b !important;
+}
+
+.theme-clinical-light .text-teal-300,
+.theme-clinical-light .text-teal-400 {
+  color: #0f766e !important;
+}
+
+.theme-clinical-light .bg-teal-500\/20 {
+  background-color: #ccfbf1 !important;
+}
+
+.theme-clinical-light .border-teal-400\/40,
+.theme-clinical-light .border-teal-500\/30,
+.theme-clinical-light .border-teal-500\/40 {
+  border-color: #5eead4 !important;
+}
+
+/* Active buttons & text cascade for themes */
+.theme-udh-teal .bg-sky-500 {
+  background-color: #0d9488 !important;
+}
+.theme-udh-teal .text-sky-400,
+.theme-udh-teal .text-sky-300 {
+  color: #2dd4bf !important;
+}
+
+.theme-navy-ops .bg-sky-500 {
+  background-color: #0284c7 !important;
+}
+.theme-navy-ops .text-sky-400,
+.theme-navy-ops .text-sky-300 {
+  color: #38bdf8 !important;
+}
+
+.theme-dark-obsidian .bg-sky-500 {
+  background-color: #f59e0b !important;
+  color: #09090b !important;
+}
+.theme-dark-obsidian .text-sky-400,
+.theme-dark-obsidian .text-sky-300 {
+  color: #fbbf24 !important;
+}
+
+.theme-clinical-light .bg-sky-500 {
+  background-color: #0f766e !important;
+  color: #ffffff !important;
+}
+.theme-clinical-light .text-sky-400,
+.theme-clinical-light .text-sky-300 {
+  color: #0f766e !important;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(4, 18, 25, 0.4);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(20, 184, 166, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(20, 184, 166, 0.7);
+}
