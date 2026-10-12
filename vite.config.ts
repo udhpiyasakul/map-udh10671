@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/map-udh10671/', // ⚠️ ใส่บรรทัดนี้เพิ่มเข้าไป (เปลี่ยนเป็นชื่อ Repository ของคุณ)
+    base: '/map-udh10671/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
