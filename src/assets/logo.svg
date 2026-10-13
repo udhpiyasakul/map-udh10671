@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" width="800" height="900">
+  <defs>
+    <style>
+      .thai-title {
+        font-family: 'Norasi', 'Kinnari', 'Sarabun', 'Loma', serif;
+        font-weight: bold;
+        fill: #E6007E;
+        text-anchor: middle;
+      }
+      .eng-title {
+        font-family: 'Liberation Serif', 'FreeSerif', 'Times New Roman', serif;
+        font-weight: bold;
+        fill: #E6007E;
+        text-anchor: middle;
+      }
+    </style>
+  </defs>
+
+  <!-- Cross Emblem -->
+  <g id="cross-container" transform="translate(0, 10)">
+    <!-- Rounded Medical Cross with hot-pink outline & pastel pink fill -->
+    <path d="
+      M 315,50
+      L 485,50
+      C 525,50 545,70 545,110
+      L 545,215
+      C 545,235 565,245 585,245
+      L 690,245
+      C 730,245 750,265 750,305
+      L 750,475
+      C 750,515 730,535 690,535
+      L 585,535
+      C 565,535 545,545 545,565
+      L 545,670
+      C 545,710 525,730 485,730
+      L 315,730
+      C 275,730 255,710 255,670
+      L 255,565
+      C 255,545 235,535 215,535
+      L 110,535
+      C 70,535 50,515 50,475
+      L 50,305
+      C 50,265 70,245 110,245
+      L 215,245
+      C 235,245 255,235 255,215
+      L 255,110
+      C 255,70 275,50 315,50
+      Z
+    " fill="#FDE7F1" stroke="#E6007E" stroke-width="16" stroke-linejoin="round" />
+
+    <!-- Top Lotus Petals -->
+    <g id="top-lotus" transform="translate(400, 165)">
+      <!-- Outer curved petals (Magenta #E6007E) -->
+      <path d="M 0,-70 C 50,-25 55,25 28,68 C 12,42 -12,42 -28,68 C -55,25 -50,-25 0,-70 Z" fill="#E6007E" />
+      <!-- Inner petal (Dark Red #B71C1C) -->
+      <path d="M 0,-60 C 26,-25 28,15 0,58 C -28,15 -26,-25 0,-60 Z" fill="#B71C1C" />
+    </g>
+
+    <!-- Bottom Lotus Petals (Inverted) -->
+    <g id="bottom-lotus" transform="translate(400, 615) scale(1, -1)">
+      <!-- Outer curved petals (Magenta #E6007E) -->
+      <path d="M 0,-70 C 50,-25 55,25 28,68 C 12,42 -12,42 -28,68 C -55,25 -50,-25 0,-70 Z" fill="#E6007E" />
+      <!-- Inner petal (Dark Red #B71C1C) -->
+      <path d="M 0,-60 C 26,-25 28,15 0,58 C -28,15 -26,-25 0,-60 Z" fill="#B71C1C" />
+    </g>
+
+    <!-- Center UDH Logotype -->
+    <g id="udh-letters" fill="#B71C1C" transform="translate(400, 390)">
+      <!-- Letter U -->
+      <path d="
+        M -270,-100
+        L -225,-100
+        L -225,35
+        C -225,65 -205,80 -180,80
+        C -155,80 -135,65 -135,35
+        L -135,-100
+        L -90,-100
+        L -90,35
+        C -90,95 -130,125 -180,125
+        C -230,125 -270,95 -270,35
+        Z
+      " />
+
+      <!-- Letter D -->
+      <path d="
+        M -75,-100
+        L 35,-100
+        C 105,-100 145,-60 145,12
+        C 145,85 105,125 35,125
+        L -75,125
+        Z
+        M -30,-60
+        L -30,85
+        L 30,85
+        C 75,85 100,60 100,12
+        C 100,-36 75,-60 30,-60
+        Z
+      " />
+
+      <!-- Letter H -->
+      <path d="
+        M 165,-100
+        L 210,-100
+        L 210,-10
+        L 255,-10
+        L 255,-100
+        L 300,-100
+        L 300,125
+        L 255,125
+        L 255,35
+        L 210,35
+        L 210,125
+        L 165,125
+        Z
+      " />
+    </g>
+  </g>
+
+  <!-- Typography at bottom -->
+  <text x="400" y="800" class="thai-title" font-size="62" letter-spacing="1.5">โรงพยาบาลอุดรธานี</text>
+  <text x="400" y="865" class="eng-title" font-size="48" letter-spacing="1">Udon Thani Hospital</text>
+</svg>

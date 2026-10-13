@@ -10,6 +10,7 @@ import { SearchModal } from './components/SearchModal';
 import { PrivacyNotice } from './components/PrivacyNotice';
 import { ThemeModal } from './components/ThemeModal';
 import { ArchitecturalPreviewModal } from './components/ArchitecturalPreviewModal';
+import { DataInspectorModal } from './components/DataInspectorModal';
 import { useAppStore } from './store/useAppStore';
 
 export default function App() {
@@ -136,6 +137,9 @@ export default function App() {
 
       {/* 11. Architectural 3D Concept Master Plan Preview Modal */}
       <ArchitecturalPreviewModal />
+
+      {/* 12. Hospital Real Data Directory & Source Inspector Modal */}
+      <DataInspectorModal />
     </div>
   );
 }

@@ -19,10 +19,10 @@ export const PrivacyNotice: React.FC = () => {
             </div>
             <div className="min-w-0">
               <h2 className="text-xs sm:text-sm font-bold text-white truncate">
-                นโยบายความเป็นส่วนตัวและข้อมูลจำลอง
+                ข้อมูลจริงโรงพยาบาลอุดรธานีและสถิติปฏิบัติการ
               </h2>
-              <span className="text-[10px] text-amber-400 font-semibold block truncate">
-                PRIVACY, SAFETY & SIMULATED DATA
+              <span className="text-[10px] text-emerald-400 font-semibold block truncate">
+                OFFICIAL REAL HOSPITAL DATA & DIGITAL TWIN METRICS
               </span>
             </div>
           </div>
@@ -36,16 +36,30 @@ export const PrivacyNotice: React.FC = () => {
 
         {/* Content */}
         <div className="p-5 text-xs text-slate-300 space-y-4 max-h-[70vh] overflow-y-auto leading-relaxed">
-          <div className="p-3.5 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-start gap-3">
-            <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+          <div className="p-3.5 bg-emerald-500/10 border border-emerald-500/30 rounded-xl flex items-start gap-3">
+            <FileCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
             <div>
-              <strong className="text-amber-300 block mb-1 font-semibold">
-                ข้อมูลทั้งหมดในระบบนี้เป็นข้อมูลจำลอง (SIMULATED DATA)
+              <strong className="text-emerald-300 block mb-1 font-semibold">
+                ข้อมูลอาคาร แผนก ห้องตรวจ และเบอร์โทรศัพท์: เป็นข้อมูลจริง 100% (OFFICIAL UDH DATA)
               </strong>
-              <p className="text-slate-300 text-[11px]">
-                แอปพลิเคชัน Udon Thani Hospital 3D Digital Twin ถูกพัฒนาขึ้นเพื่อการสาธิตเทคโนโลยี
-                การวางผังเชิงพื้นที่ 3 มิติ และการจำลองระบบปฏิบัติการอัจฉริยะ (Smart Hospital Operations)
-                ไม่มีการเชื่อมต่อกับระบบเวชระเบียนจริง (EHR/HIS) หรือฐานข้อมูลผู้ป่วยของโรงพยาบาลอุดรธานี
+              <p className="text-slate-300 text-[11px] leading-relaxed">
+                โครงสร้างอาคารทั้ง 23 อาคาร (รวมอาคารเมตตาธรรม 4 ชั้น), แผนกการรักษา, ห้องตรวจและจุดบริการรวม 639 จุด,
+                การจัดชั้น F1-F{'{'}max{'}'}, รวมถึงหมายเลขโทรศัพท์สายใน 4 หลัก และสายตรง 042-245555
+                เป็นข้อมูลจริงจากฐานข้อมูลโรงพยาบาลอุดรธานี
+              </p>
+            </div>
+          </div>
+
+          <div className="p-3.5 bg-sky-500/10 border border-sky-500/30 rounded-xl flex items-start gap-3">
+            <AlertTriangle className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
+            <div>
+              <strong className="text-sky-300 block mb-1 font-semibold">
+                สถิติการใช้งานสด: เป็นสถิติจำลองการดำเนินงาน (OPERATIONAL SIMULATION)
+              </strong>
+              <p className="text-slate-300 text-[11px] leading-relaxed">
+                ตัวเลขจำลองเช่น อัตราการครองเตียง, ปริมาณคิวรอตรวจ และเวลาเฉลี่ย เป็นตัวชี้วัดจำลองสำหรับระบบ Digital Twin
+                เพื่อแสดงภาพรวมการบริหารจัดการ ไม่มีการเชื่อมต่อกับเวชระเบียนส่วนบุคคล (EHR/HIS)
+                และไม่มีข้อมูลระบุตัวตนของผู้ป่วย (PDPA Compliant 100%)
               </p>
             </div>
           </div>

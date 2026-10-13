@@ -23,6 +23,8 @@ export interface Size3D {
   depth: number;
 }
 
+export type DataSourceType = 'SIMULATED DATA' | 'REAL UDH DATA' | 'OFFICIAL REAL DATA';
+
 export interface Building {
   id: string;
   nameTh: string;
@@ -38,7 +40,8 @@ export interface Building {
   totalCapacity: number;
   currentOccupancy: number;
   operationalStatus: OperationalStatus;
-  dataSource: 'SIMULATED DATA';
+  isRealData?: boolean;
+  dataSource: DataSourceType;
   updatedAt: string;
 }
 
@@ -57,7 +60,8 @@ export interface Department {
   simulatedQueueLength: number;
   simulatedAvgWaitMinutes: number;
   color: string;
-  dataSource: 'SIMULATED DATA';
+  isRealData?: boolean;
+  dataSource: DataSourceType;
   updatedAt: string;
 }
 
@@ -65,15 +69,24 @@ export interface Room {
   id: string;
   departmentId: string;
   buildingId: string;
+  buildingName?: string;
   name: string;
+  cleanName?: string;
   floor: number;
+  floorLabel?: string;
   roomType: 'er_bay' | 'or_suite' | 'icu_bed' | 'ward' | 'consultation' | 'lab_bench' | 'scan_suite' | 'pharmacy_counter';
   status: 'available' | 'occupied' | 'cleaning' | 'reserved' | 'maintenance';
   capacity: number;
   currentAggregateUsage: number;
   utilization: number;
   relativePosition: Position3D;
-  dataSource: 'SIMULATED DATA';
+  phone?: string;
+  category?: string;
+  roomCode?: string;
+  workingHours?: string;
+  keywords?: string[];
+  isRealData?: boolean;
+  dataSource: DataSourceType;
   updatedAt: string;
 }
 

@@ -1,6 +1,6 @@
 /**
- * Udon Thani Hospital Real Dataset (Version 2026-09-17-1NF)
- * Provided by UDH team containing all 23 real buildings, 633+ POIs, polygons & coordinates
+ * Udon Thani Hospital Real Dataset (Version 2026-10-12 639 POIs)
+ * Provided by UDH team containing all 23 real buildings, 639 POIs, polygons & coordinates
  */
 
 export interface RawBuilding {
@@ -53,7 +53,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'opd',
     name: 'อาคารผู้ป่วยนอกและอำนวยการ',
-    count: 196,
+    count: 133,
     floors: [1, 2, 3, 4, 5, 6, 7],
     center: [17.415343816305736, 102.78038380667567],
     color: '#10b981',
@@ -68,7 +68,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'excellent',
     name: 'อาคารศูนย์เชี่ยวชาญ (EXCELLENT CENTER)',
-    count: 104,
+    count: 58,
     floors: [1, 2, 3, 4, 5, 6, 7],
     center: [17.41492684186648, 102.77956455945969],
     color: '#6366f1',
@@ -83,7 +83,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-69y',
     name: 'อาคาร 69 ปี โรงพยาบาลอุดรธานี',
-    count: 71,
+    count: 68,
     floors: [1, 2, 3, 4, 5, 6, 7, 8],
     center: [17.416685047100486, 102.77959922756291],
     color: '#f59e0b',
@@ -98,7 +98,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-opd-old',
     name: 'อาคารผู้ป่วยนอก OPD เก่า',
-    count: 62,
+    count: 30,
     floors: [1, 2],
     center: [17.41481253989673, 102.7801036834717],
     color: '#84cc16',
@@ -115,7 +115,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-96y',
     name: 'อาคาร 96 ปี หลวงตามหาบัว',
-    count: 64,
+    count: 68,
     floors: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     center: [17.417054856632262, 102.78055496513846],
     color: '#ec4899',
@@ -130,7 +130,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-surg',
     name: 'อาคารศัลยคารอุตราทร',
-    count: 33,
+    count: 54,
     floors: [1, 2, 3, 4, 5, 6, 7],
     center: [17.416255094536417, 102.77984149754047],
     color: '#ef4444',
@@ -145,7 +145,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-obgyn',
     name: 'อาคารสูติ-นรีเวชกรรม',
-    count: 27,
+    count: 40,
     floors: [1, 2, 3, 4, 5],
     center: [17.416665623618645, 102.78052434655763],
     color: '#14b8a6',
@@ -160,7 +160,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-pathology',
     name: 'ตึกพยาธิวิทยาคลินิก',
-    count: 19,
+    count: 20,
     floors: [1, 2],
     center: [17.415911385937143, 102.779803],
     color: '#06b6d4',
@@ -175,7 +175,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-or-old',
     name: 'ตึก OR เก่า',
-    count: 17,
+    count: 12,
     floors: [1],
     center: [17.415304332830306, 102.77974574046041],
     color: '#8b5cf6',
@@ -190,7 +190,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-social-med',
     name: 'ตึกเวชกรรมสังคม-อาชีวเวชกรรม',
-    count: 18,
+    count: 20,
     floors: [1, 2],
     center: [17.4145825, 102.78048200493052],
     color: '#0ea5e9',
@@ -205,7 +205,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-med-edu',
     name: 'อาคารศูนย์แพทย์ศาสตร์',
-    count: 25,
+    count: 48,
     floors: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'N'],
     center: [17.415791870760522, 102.77873374521734],
     color: '#3b82f6',
@@ -219,9 +219,9 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   },
   {
     id: 'bldg-metta',
-    name: 'ตึกเมตตาสุคโต',
-    count: 13,
-    floors: [1],
+    name: 'อาคารเมตตาธรรม',
+    count: 16,
+    floors: [1, 2, 3, 4],
     center: [17.416684407312896, 102.78010234236719],
     color: '#d97706',
     polygon: [
@@ -250,7 +250,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-supply-cssd',
     name: 'อาคารจ่ายกลาง',
-    count: 5,
+    count: 8,
     floors: [1],
     center: [17.416066172046627, 102.77945991401675],
     color: '#a855f7',
@@ -265,7 +265,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-maintenance',
     name: 'อาคารซ่อมบำรุง',
-    count: 5,
+    count: 7,
     floors: [1],
     center: [17.41515525601892, 102.77889369517663],
     color: '#78716c',
@@ -280,7 +280,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-warehouse',
     name: 'คลังพัสดุ',
-    count: 5,
+    count: 6,
     floors: [1],
     center: [17.41515822012853, 102.77906067228321],
     color: '#a1a1aa',
@@ -295,7 +295,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-pharm-storage',
     name: 'อาคารคลังยาคลังน้ำเกลือ',
-    count: 4,
+    count: 6,
     floors: [1],
     center: [17.415154826015385, 102.77880052810289],
     color: '#38bdf8',
@@ -310,7 +310,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-laundry',
     name: 'อาคารซักฟอก',
-    count: 3,
+    count: 5,
     floors: [1],
     center: [17.4158996321462, 102.77946909804342],
     color: '#94a3b8',
@@ -325,7 +325,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-ruangphueng',
     name: 'หอผู้ป่วยรวงผึ้ง',
-    count: 4,
+    count: 8,
     floors: [1],
     center: [17.415512272414183, 102.77853257954122],
     color: '#facc15',
@@ -340,7 +340,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-field',
     name: 'อาคารสนาม',
-    count: 3,
+    count: 5,
     floors: [1],
     center: [17.415177649550536, 102.77858823537827],
     color: '#4ade80',
@@ -355,7 +355,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-ari-tent',
     name: 'เต็นท์ ARI+บัวแคร์',
-    count: 3,
+    count: 5,
     floors: [1],
     center: [17.416530817441718, 102.7783969239426],
     color: '#fb7185',
@@ -370,7 +370,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-nutrition',
     name: 'อาคารโภชนาศาสตร์',
-    count: 2,
+    count: 5,
     floors: [1],
     center: [17.41574086397761, 102.77946965260504],
     color: '#fb923c',
@@ -385,7 +385,7 @@ export const REAL_BUILDINGS: RawBuilding[] = [
   {
     id: 'bldg-forensic',
     name: 'อาคารนิติเวช',
-    count: 2,
+    count: 5,
     floors: [1],
     center: [17.414991528479618, 102.77904720968522],
     color: '#6b7280',

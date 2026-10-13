@@ -190,7 +190,7 @@ export const ControlDock: React.FC = () => {
         >
           ทั้งหมด
         </button>
-        {[1, 2, 4, 5].map((flr) => (
+        {[1, 2, 3, 4, 5].map((flr) => (
           <button
             key={flr}
             onClick={() => setActiveFloor(activeFloor === flr ? null : flr)}

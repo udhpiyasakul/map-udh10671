@@ -14,11 +14,18 @@ import {
 } from '../types/hospital';
 import { INITIAL_BUILDINGS } from '../data/demoHospital';
 import { INITIAL_DEPARTMENTS } from '../data/demoDepartments';
-import { INITIAL_ROOMS } from '../data/demoRooms';
+import { INITIAL_ROOMS, getInitialRooms } from '../data/demoRooms';
 import { INITIAL_EQUIPMENT } from '../data/demoEquipment';
 import { INITIAL_VEHICLES } from '../data/demoVehicles';
 import { INITIAL_ALERTS } from '../data/demoAlerts';
 import { audioManager } from '../simulation/audioManager';
+import {
+  saveBuildingImport,
+  clearBuildingImport,
+  realRoomToStoreRoom,
+  importCampusBatchCsv,
+} from '../data/udhBuildingCatalog';
+import { UDH_OFFICIAL_ROOMS } from '../data/udhOfficialRooms';
 
 export interface CameraFocusTarget {
   position: Position3D;
@@ -99,8 +106,10 @@ interface AppStoreState {
   isPrivacyModalOpen: boolean;
   showFloatingLabels: boolean;
   isArchitecturalPreviewOpen: boolean;
+  isDataInspectorOpen: boolean;
 
   // Actions
+  setDataInspectorOpen: (open: boolean) => void;
   setShowFloatingLabels: (show: boolean) => void;
   toggleFloatingLabels: () => void;
   setArchitecturalPreviewOpen: (open: boolean) => void;
@@ -130,6 +139,11 @@ interface AppStoreState {
   setMapOpen: (open: boolean) => void;
   setSearchOpen: (open: boolean) => void;
   setPrivacyModalOpen: (open: boolean) => void;
+  importBuildingTextData: (buildingId: string, text: string) => void;
+  importBatchCsvData: (csvText: string) => void;
+  clearBuildingData: (buildingId: string) => void;
+  resetBuildingToOfficial: (buildingId: string) => void;
+  resetAllToOfficialData: () => void;
 
   // Engine tick
   tickSimulation: (deltaSeconds: number) => void;
@@ -188,7 +202,9 @@ export const useAppStore = create<AppStoreState>((set, get) => ({
   isPrivacyModalOpen: false,
   showFloatingLabels: true,
   isArchitecturalPreviewOpen: false,
+  isDataInspectorOpen: false,
 
+  setDataInspectorOpen: (open) => set({ isDataInspectorOpen: open }),
   setShowFloatingLabels: (show) => set({ showFloatingLabels: show }),
   toggleFloatingLabels: () => set((s) => ({ showFloatingLabels: !s.showFloatingLabels })),
   setArchitecturalPreviewOpen: (open) => set({ isArchitecturalPreviewOpen: open }),
@@ -357,6 +373,53 @@ export const useAppStore = create<AppStoreState>((set, get) => ({
   setMapOpen: (open) => set({ isMapOpen: open }),
   setSearchOpen: (open) => set({ isSearchOpen: open }),
   setPrivacyModalOpen: (open) => set({ isPrivacyModalOpen: open }),
+
+  importBuildingTextData: (buildingId: string, text: string) => {
+    const parsed = saveBuildingImport(buildingId, text);
+    const storeRooms = parsed.map(realRoomToStoreRoom);
+    set((state) => {
+      const remainingRooms = state.rooms.filter((r) => r.buildingId !== buildingId);
+      return {
+        rooms: [...remainingRooms, ...storeRooms],
+      };
+    });
+  },
+
+  importBatchCsvData: (csvText: string) => {
+    importCampusBatchCsv(csvText);
+    const updated = getInitialRooms();
+    set({ rooms: updated });
+  },
+
+  clearBuildingData: (buildingId: string) => {
+    clearBuildingImport(buildingId);
+    // Revert to official attached records for this building
+    const officialRoomsForBld = UDH_OFFICIAL_ROOMS.filter((r) => r.buildingId === buildingId);
+    set((state) => ({
+      rooms: [...state.rooms.filter((r) => r.buildingId !== buildingId), ...officialRoomsForBld],
+    }));
+  },
+
+  resetBuildingToOfficial: (buildingId: string) => {
+    clearBuildingImport(buildingId);
+    const officialRoomsForBld = UDH_OFFICIAL_ROOMS.filter((r) => r.buildingId === buildingId);
+    set((state) => ({
+      rooms: [...state.rooms.filter((r) => r.buildingId !== buildingId), ...officialRoomsForBld],
+    }));
+  },
+
+  resetAllToOfficialData: () => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem('udh_real_building_catalog_v2');
+      } catch (e) {
+        // ignore
+      }
+    }
+    set({
+      rooms: [...UDH_OFFICIAL_ROOMS],
+    });
+  },
 
   tickSimulation: (deltaSeconds) => {
     const state = get();

@@ -19,6 +19,7 @@ import {
   Maximize2,
   SlidersHorizontal,
   Compass,
+  Copy,
 } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import { HOSPITAL_GEO_COORDS } from '../data/demoHospital';
@@ -54,6 +55,17 @@ export const MapPanel: React.FC = () => {
   // Directory state
   const [directorySearch, setDirectorySearch] = useState<string>('');
   const [directoryCategory, setDirectoryCategory] = useState<string>('all');
+  const [copiedPhone, setCopiedPhone] = useState<string | null>(null);
+
+  const handleCopyPhone = (phone: string) => {
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(phone);
+    }
+    setCopiedPhone(phone);
+    setTimeout(() => {
+      setCopiedPhone((curr) => (curr === phone ? null : curr));
+    }, 2000);
+  };
 
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -1037,6 +1049,29 @@ export const MapPanel: React.FC = () => {
                       <Phone className="w-3.5 h-3.5" />
                       <span className="hidden xs:inline">โทร</span>
                     </a>
+
+                    {/* Copy Phone Button */}
+                    <button
+                      onClick={() => handleCopyPhone(entry.telExtension)}
+                      className={`px-2 sm:px-2.5 py-1.5 text-xs font-semibold rounded-xl transition-all flex items-center gap-1 min-h-[34px] ${
+                        copiedPhone === entry.telExtension
+                          ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/50'
+                          : 'bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700'
+                      }`}
+                      title={`คัดลอกเบอร์ ${entry.telExtension}`}
+                    >
+                      {copiedPhone === entry.telExtension ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                          <span className="hidden sm:inline">คัดลอกแล้ว</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5 opacity-70" />
+                          <span className="hidden sm:inline">คัดลอก</span>
+                        </>
+                      )}
+                    </button>
 
                     <button
                       onClick={() => {

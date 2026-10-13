@@ -381,18 +381,6 @@ export function createBuildingMesh(
   } as MeshUserData;
 
   const floorHeight = bld.size.height / bld.floorCount;
-  const isHeatmap = activeLayer === 'heatmap';
-
-  // Heatmap occupancy color
-  let heatmapColor = 0x10b981;
-  const occRate = bld.currentOccupancy / bld.totalCapacity;
-  if (occRate > 0.88) {
-    heatmapColor = 0xef4444;
-  } else if (occRate > 0.75) {
-    heatmapColor = 0xf59e0b;
-  } else if (occRate > 0.55) {
-    heatmapColor = 0x06b6d4;
-  }
 
   // Minimalist Architectural Palette (Bangkok BTS Style: White Architectural Model & Sky-Blue Glass)
   const facadeWhiteColor = isNight ? 0xd1d5db : 0xffffff;
@@ -451,27 +439,21 @@ export function createBuildingMesh(
       bld.size.depth - 0.2
     );
 
-    // Color logic
-    let glassColor: THREE.Color;
-    if (isHeatmap) {
-      glassColor = new THREE.Color(heatmapColor);
-    } else if (isSelected) {
-      glassColor = new THREE.Color(0x0284c7);
-    } else {
-      // Sky-blue reflective architectural glass as seen in BTS presentation
-      glassColor = isNight ? new THREE.Color(0x1e293b) : new THREE.Color(0x38bdf8);
-    }
+    // Color logic (Clean architectural glass with royal blue selection)
+    const glassColor = isSelected
+      ? new THREE.Color(0x0284c7)
+      : isNight
+      ? new THREE.Color(0x1e293b)
+      : new THREE.Color(0x38bdf8);
 
     // Warm clinical interior illumination at night
     const emissiveColor = isSelected
       ? 0x0284c7
-      : isHeatmap
-      ? heatmapColor
       : isNight
       ? (floor % 2 === 0 ? 0xfef08a : 0x7dd3fc)
       : 0x000000;
 
-    const emissiveInt = isSelected ? 0.45 : isHeatmap ? 0.35 : isNight ? 0.48 : 0;
+    const emissiveInt = isSelected ? 0.45 : isNight ? 0.48 : 0;
 
     const wallMat = new THREE.MeshStandardMaterial({
       color: glassColor,

@@ -13,8 +13,8 @@ export const HOSPITAL_GEO_COORDS = {
   addressTh: 'โรงพยาบาลอุดรธานี เลขที่ 33 ถนนเพาะนิยม ตำบลหมากแข้ง อำเภอเมือง จังหวัดอุดรธานี 41000',
   addressEn: 'Udon Thani Hospital, 33 Pho Niyom Rd, Mak Khaeng, Mueang Udon Thani 41000',
   hospitalTypeTh: 'โรงพยาบาลศูนย์ ระดับตติยภูมิขั้นสูง (Tertiary Regional Hospital)',
-  totalPoisReal: 633,
-  dataVersion: '2026-09-17-1NF',
+  totalPoisReal: 639,
+  dataVersion: '2026-10-12-639Pois',
 };
 
 // Specific architectural layout adjustments to prevent road encroachment and building overlaps
@@ -34,10 +34,26 @@ const BUILDING_LAYOUT_OVERRIDES: Record<
   'bldg-obgyn': { x: 76, z: -96, width: 44, depth: 28 },
   // Old OPD Building (positioned with front facing courtyard and Royal Monument Plaza)
   'bldg-opd-old': { x: 32, z: 108, width: 38, depth: 52 },
-  // Metta Sukhato Building (between 69Y and OB-GYN)
+  // Metta Tham Building (อาคารเมตตาธรรม 4 ชั้น)
   'bldg-metta': { x: 30, z: -98, width: 32, depth: 24 },
   // Excellent Center
   excellent: { x: -26, z: 98, width: 56, depth: 38 },
+};
+
+const SHORT_BUILDING_CODES: Record<string, string> = {
+  opd: 'OPD',
+  'bldg-96y': '96Y',
+  'bldg-69y': '69Y',
+  'bldg-surg': 'SURG',
+  'bldg-obgyn': 'OBGYN',
+  'bldg-metta': 'METTA',
+  excellent: 'EXC',
+  'bldg-med-edu': 'MED',
+  'bldg-opd-old': 'OLD-OPD',
+  'bldg-pathology': 'PATH',
+  'bldg-social-med': 'SOC',
+  'bldg-hemodialysis': 'HEMO',
+  'bldg-or-old': 'OR',
 };
 
 // Map the 23 real buildings into the 3D Building objects
@@ -66,26 +82,23 @@ export const INITIAL_BUILDINGS: Building[] = REAL_BUILDINGS.map((b) => {
   const finalX = override.x !== undefined ? override.x : worldPos.x;
   const finalZ = override.z !== undefined ? override.z : worldPos.z;
 
-  // Dynamic occupancy and capacity based on POI count
-  const capacity = Math.max(20, b.count * 4);
-  const occupancy = Math.round(capacity * (0.65 + (b.count % 25) * 0.01));
-
   return {
     id: b.id,
     nameTh: b.name,
     nameEn: b.id.toUpperCase(),
-    code: b.id.toUpperCase(),
+    code: SHORT_BUILDING_CODES[b.id] || b.id.toUpperCase(),
     floorCount: floorCount,
     position: { x: finalX, y: 0, z: finalZ },
     size: { width: widthM, height: heightM, depth: depthM },
     color: b.color,
-    descriptionTh: `${b.name} (${floorCount} ชั้น, จุดบริการ ${b.count} จุด)`,
-    descriptionEn: `${b.name} (${floorCount} floors, ${b.count} service locations)`,
+    descriptionTh: `${b.name} (${floorCount} ชั้น)`,
+    descriptionEn: `${b.name} (${floorCount} floors)`,
     totalRooms: b.count,
-    totalCapacity: capacity,
-    currentOccupancy: occupancy,
-    operationalStatus: b.count > 50 ? 'busy' : 'normal',
-    dataSource: 'SIMULATED DATA',
+    totalCapacity: 0,
+    currentOccupancy: 0,
+    operationalStatus: 'normal',
+    isRealData: true,
+    dataSource: 'REAL UDH DATA',
     updatedAt: new Date().toISOString(),
   };
 });

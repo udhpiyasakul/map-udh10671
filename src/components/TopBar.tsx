@@ -19,6 +19,7 @@ import {
   Sparkles,
   Palette,
   Check,
+  Database,
 } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 
@@ -45,6 +46,7 @@ export const TopBar: React.FC = () => {
   const toggleDayNightMode = useAppStore((s) => s.toggleDayNightMode);
   const setTimeOfDayPreset = useAppStore((s) => s.setTimeOfDayPreset);
   const setArchitecturalPreviewOpen = useAppStore((s) => s.setArchitecturalPreviewOpen);
+  const setDataInspectorOpen = useAppStore((s) => s.setDataInspectorOpen);
 
   // Mobile menu drawer state
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -73,10 +75,14 @@ export const TopBar: React.FC = () => {
   return (
     <>
       <header className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between gap-2 px-3 py-2 sm:px-4 sm:py-3 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
-        {/* Zone 1: Brand & Simulated Data Badge */}
+        {/* Zone 1: Brand & Official Logo Badge */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <div className="w-8 h-8 rounded-lg bg-teal-500/20 border border-teal-400/40 flex items-center justify-center text-teal-300 shadow-sm shadow-teal-950/40 shrink-0">
-            <Activity className="w-4 h-4" />
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-teal-950/40 border border-teal-500/40 p-1 flex items-center justify-center shadow-md shadow-teal-950/50 shrink-0">
+            <img
+              src="/logo.png"
+              alt="ตราสัญลักษณ์โรงพยาบาลอุดรธานี"
+              className="w-full h-full object-contain filter drop-shadow"
+            />
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5 sm:gap-2">
@@ -89,10 +95,20 @@ export const TopBar: React.FC = () => {
                 <span className="inline sm:hidden">3D TWIN</span>
               </span>
             </div>
-            <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-400">
-              <span className="text-amber-400 font-medium">SIMULATED DATA</span>
-              <span aria-hidden="true" className="hidden sm:inline">·</span>
-              <span className="hidden sm:inline text-teal-300/80">Udon Thani Hospital</span>
+            <div
+              onClick={() => setDataInspectorOpen(true)}
+              className="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-slate-400 cursor-pointer hover:text-slate-200 transition-colors"
+              title="แตะเพื่อตรวจสอบข้อมูลจริงของอาคารและจุดบริการ"
+            >
+              <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="hidden xs:inline">23 อาคารจริง</span>
+                <span className="inline xs:hidden">ผังจริง</span>
+              </span>
+              <span aria-hidden="true" className="text-slate-600">·</span>
+              <span className="text-sky-300 font-medium">อาคารเมตตาธรรม 4 ชั้น</span>
+              <span aria-hidden="true" className="hidden sm:inline text-slate-600">·</span>
+              <span className="hidden sm:inline text-teal-300/80">รพ.อุดรธานี</span>
             </div>
           </div>
         </div>
@@ -106,23 +122,10 @@ export const TopBar: React.FC = () => {
                 ? 'bg-teal-500/20 text-teal-300 border border-teal-500/30'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
-            title="แสดงทุกองค์ประกอบในฉาก"
+            title="แสดงโมเดลสถาปัตยกรรมทุกอาคาร"
           >
             <Layers className="w-3.5 h-3.5" />
-            <span>ทั้งหมด</span>
-          </button>
-
-          <button
-            onClick={() => setActiveLayer('heatmap')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
-              activeLayer === 'heatmap'
-                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-            title="แผนผังความหนาแน่นและอัตราการใช้พื้นที่"
-          >
-            <Flame className="w-3.5 h-3.5" />
-            <span>Heatmap อัตราครองพื้นที่</span>
+            <span>โมเดล 3D อาคาร</span>
           </button>
 
           <button
@@ -176,16 +179,6 @@ export const TopBar: React.FC = () => {
               </button>
             ))}
           </div>
-
-          {/* Architectural 3D Preview Modal Button */}
-          <button
-            onClick={() => setArchitecturalPreviewOpen(true)}
-            className="flex items-center gap-1.5 p-2 sm:px-3 sm:py-1.5 text-xs font-bold rounded-lg border transition-all whitespace-nowrap shadow-sm min-w-[36px] min-h-[36px] sm:min-h-0 justify-center bg-emerald-500/20 text-emerald-300 border-emerald-500/40 hover:bg-emerald-500/30"
-            title="ดูภาพตัวอย่างผัง 3D และทัศนียภาพสถาปัตยกรรม (Architectural Preview)"
-          >
-            <Sparkles className="w-4 h-4 text-emerald-400" />
-            <span className="hidden md:inline font-bold">ตัวอย่างผัง 3D</span>
-          </button>
 
           {/* Theme & Style Selector Button */}
           <button
@@ -324,9 +317,13 @@ export const TopBar: React.FC = () => {
           >
             {/* Header */}
             <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <Activity className="w-4 h-4 text-sky-400" />
-                <span className="text-sm font-bold text-white">เมนูควบคุมจำลอง UDH</span>
+              <div className="flex items-center gap-2.5">
+                <img
+                  src="/logo.png"
+                  alt="ตราสัญลักษณ์ รพ.อุดรธานี"
+                  className="w-6 h-6 object-contain"
+                />
+                <span className="text-sm font-bold text-white">ระบบ 3D รพ.อุดรธานี</span>
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
@@ -398,20 +395,6 @@ export const TopBar: React.FC = () => {
                   <span>ทั้งหมด</span>
                 </button>
 
-                <button
-                  onClick={() => {
-                    setActiveLayer('heatmap');
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`flex items-center gap-2 p-2.5 rounded-xl border text-xs font-medium transition-all ${
-                    activeLayer === 'heatmap'
-                      ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 shadow-sm'
-                      : 'bg-slate-950/60 text-slate-400 border-slate-800'
-                  }`}
-                >
-                  <Flame className="w-4 h-4 text-amber-400" />
-                  <span>Heatmap ครองเตียง</span>
-                </button>
 
                 <button
                   onClick={() => {
@@ -480,6 +463,36 @@ export const TopBar: React.FC = () => {
               <span className="text-xs font-semibold text-slate-400 block mb-1">
                 การทำงานเพิ่มเติม:
               </span>
+
+              {/* Hospital Real Data Directory Inspector */}
+              <button
+                onClick={() => {
+                  setDataInspectorOpen(true);
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full flex items-center justify-between p-2.5 rounded-xl border text-xs font-semibold bg-cyan-500/20 text-cyan-300 border-cyan-500/40 transition-colors"
+              >
+                <div className="flex items-center gap-2">
+                  <Database className="w-4 h-4 text-cyan-400" />
+                  <span>ศูนย์ข้อมูลจริง 639 จุดบริการ (Excel / CSV)</span>
+                </div>
+                <span className="text-[10px] text-cyan-400 font-bold">เปิดดู</span>
+              </button>
+
+              {/* Architectural 3D Preview */}
+              <button
+                onClick={() => {
+                  setArchitecturalPreviewOpen(true);
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full flex items-center justify-between p-2.5 rounded-xl border text-xs font-semibold bg-emerald-500/20 text-emerald-300 border-emerald-500/40 transition-colors"
+              >
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-emerald-400" />
+                  <span>ตัวอย่างผัง 3D และทัศนียภาพสถาปัตยกรรม</span>
+                </div>
+                <span className="text-[10px] text-emerald-400 font-bold">ดูผัง 3D</span>
+              </button>
 
               {/* KPI Panel toggle */}
               <button
